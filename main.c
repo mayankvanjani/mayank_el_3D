@@ -22,6 +22,9 @@ int main( int argc, char** argv ) {
   else
     parse_file( "stdin", transform, edges, s );
 
+  save_extension(s, "dimensional.png");
+  display(s);
+
   free_matrix( transform );
   free_matrix( edges );
 }  

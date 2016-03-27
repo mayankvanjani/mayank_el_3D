@@ -24,16 +24,16 @@ void add_curve( struct matrix *points,
 		double x3, double y3,
 		double step, int type );
 void add_sphere( struct matrix * points, 
-		      double cx, double cy, double r, 
-		      double step );
+		 double cx, double cy,
+		 double r, double step );
 void generate_sphere( struct matrix * points, 
-			   double cx, double cy, double r, 
-			   double step );
+		      double cx, double cy,
+		      double r, double step );
 void add_torus( struct matrix * points, 
-		     double cx, double cy, double r1, double r2, 
+		double cx, double cy, double r1, double r2, 
 		      double step );
 void generate_torus( struct matrix * points, 
-			  double cx, double cy, double r1, double r2, 
+		     double cx, double cy, double r1, double r2, 
 			   double step );
 void add_box( struct matrix * points,
 		   double x, double y, double z,

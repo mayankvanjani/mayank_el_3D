@@ -55,6 +55,12 @@ The file follows the following format:
 	    takes 1 argument (file name)
 	 quit: end parsing
 
+////////// ////////// //////////
+////////// ////////// //////////
+NOW INCLUDES SPHERE, TORUS, AND BOX
+////////// ////////// //////////
+////////// ////////// //////////
+
 See the file script for an example of the file format
 
 
@@ -76,7 +82,7 @@ void parse_file ( char * filename,
   color g;
 
   g.red = 255;
-  g.green = 0;
+  g.green = 255;
   g.blue = 255;
   
   clear_screen(s);
@@ -89,8 +95,7 @@ void parse_file ( char * filename,
   while ( fgets(line, 255, f) != NULL ) {
     line[strlen(line)-1]='\0';
     //printf(":%s:\n",line);
-    double x, y, z, x1, y1, z1, x2, y2, z2, x3, y3, z3, x4, y4, z4;
-   
+    double x, y, z, x1, y1, z1, x2, y2, x3, y3, x4, y4, r2, w, h, d;
     
     if ( strncmp(line, "line", strlen(line)) == 0 ) {
       //      printf("LINE!\n");
@@ -108,6 +113,36 @@ void parse_file ( char * filename,
       add_circle(pm, x, y, z, 0.01);
       //printf( "%lf %lf %lf\n", x, y, z);
     }    
+    else if ( strncmp(line, "sphere", strlen(line)) == 0 ) {
+      printf("SPHERE\n");                                       
+      g.red = 255;
+      g.green = 0;
+      g.blue = 255;
+      fgets(line, 255, f);
+      sscanf(line, "%lf %lf %lf", &x, &y, &z);
+      add_sphere(pm, x, y, z, 0.01);
+      printf( "%lf %lf %lf\n", x, y, z);        
+    }
+    else if ( strncmp(line, "torus", strlen(line)) == 0 ) {
+      //printf("TORUS\n");
+      g.red = 0;
+      g.green = MAX_COLOR;
+      g.blue = MAX_COLOR;                                              
+      fgets(line, 255, f);
+      sscanf(line, "%lf %lf %lf %lf", &x, &y, &z, &r2);
+      add_torus(pm, x, y, z, r2, 0.01);
+      //printf( "%lf %lf %lf %lf\n", x, y, z, r2);      
+    }
+    else if ( strncmp(line, "box", strlen(line)) == 0 ) {
+      //      printf("BOX\n");                                        
+      g.red = MAX_COLOR;
+      g.green = MAX_COLOR;
+      g.blue = MAX_COLOR;
+      fgets(line, 255, f);
+      sscanf(line, "%lf %lf %lf %lf %lf %lf", &x, &y, &z, &w, &h, &d);
+      add_box(pm, x, y, z, w, h, d);
+      //      printf( "%lf %lf %lf %lf %lf %lf\n", x, y, z, w, h, d);
+    }
     else if ( strncmp(line, "bezier", strlen(line)) == 0 ) {
       //printf("BEZIER\n");
       fgets(line, 255, f);
@@ -169,6 +204,10 @@ void parse_file ( char * filename,
     else if ( strncmp(line, "ident", strlen(line)) == 0 ) {
       ident(transform);
     }
+    else if ( strncmp(line, "clear", strlen(line)) == 0 ) {
+      //      transform = new_matrix( 4,0 );
+      pm = new_matrix( 4,0 );
+    }
     else if ( strncmp(line, "apply", strlen(line)) == 0 ) {
       //printf("APPLY!\n");
       //print_matrix( transform );
@@ -200,4 +239,3 @@ void parse_file ( char * filename,
   //printf("END PARSE\n");
 }
 
-  
