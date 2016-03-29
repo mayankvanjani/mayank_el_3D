@@ -81,7 +81,7 @@ void parse_file ( char * filename,
   double angle;
   color g;
 
-  g.red = 255;
+  g.red = 0;
   g.green = 255;
   g.blue = 255;
   
@@ -115,9 +115,6 @@ void parse_file ( char * filename,
     }    
     else if ( strncmp(line, "sphere", strlen(line)) == 0 ) {
       printf("SPHERE\n");                                       
-      g.red = 255;
-      g.green = 0;
-      g.blue = 255;
       fgets(line, 255, f);
       sscanf(line, "%lf %lf %lf", &x, &y, &z);
       add_sphere(pm, x, y, z, 0.01);
@@ -125,9 +122,6 @@ void parse_file ( char * filename,
     }
     else if ( strncmp(line, "torus", strlen(line)) == 0 ) {
       //printf("TORUS\n");
-      g.red = 0;
-      g.green = MAX_COLOR;
-      g.blue = MAX_COLOR;                                              
       fgets(line, 255, f);
       sscanf(line, "%lf %lf %lf %lf", &x, &y, &z, &r2);
       add_torus(pm, x, y, z, r2, 0.01);
@@ -135,9 +129,6 @@ void parse_file ( char * filename,
     }
     else if ( strncmp(line, "box", strlen(line)) == 0 ) {
       //      printf("BOX\n");                                        
-      g.red = MAX_COLOR;
-      g.green = MAX_COLOR;
-      g.blue = MAX_COLOR;
       fgets(line, 255, f);
       sscanf(line, "%lf %lf %lf %lf %lf %lf", &x, &y, &z, &w, &h, &d);
       add_box(pm, x, y, z, w, h, d);

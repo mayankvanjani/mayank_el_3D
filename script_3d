@@ -1,6 +1,17 @@
-#Key to Success
+torus
+0 0 25 200
+ident
+xrotate
+-15
+yrotate
+60
+zrotate
+-15
+apply
 box
-200 325 0 250 250 250
+-159 73 0 200 200 200
+sphere
+0 0 100
 ident
 xrotate
 15
@@ -8,19 +19,8 @@ yrotate
 30
 zrotate
 15
-apply
-sphere
-180 265 150
-ident
-yrotate
-20
-xrotate
-20
-zrotate
-20
 translate
-100 -20 0
+250 250 0
 apply
 display
-
 quit
